@@ -24,7 +24,7 @@ def driver(request):
         profile.set_preference("browser.privatebrowsing.autostart", True)
         firefox_options.profile = profile
         driver = webdriver.Firefox(options=firefox_options)
-    driver.get(Urls.base_url)
+    driver.get(Urls.BASE_URL)
     yield driver
     driver.quit()
 
