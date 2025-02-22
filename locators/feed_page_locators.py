@@ -21,8 +21,6 @@ class FeedPageLocators:
 
     ORDER_IN_PROGRESS = (By.XPATH, '//ul[contains(@class, "OrderFeed_orderListReady")]/li')
 
-    NUMBER_OF_ORDER_IN_PROGRESS = (By.XPATH, '//ul[contains(@class, '
-                                             '"OrderFeed_orderListReady")]/li[contains(@class, '
-                                             '"text_type_digits-default")]')
+    NUMBER_OF_ORDER_IN_PROGRESS = (By.XPATH, '//ul[contains(@class, "OrderFeed_orderListReady")]/li[contains(@class, "text_type_digits-default")]')
 
     ID_ORDER_CARD_IN_FEED_WITH_SUBSTITUTIONS = (By.XPATH, './/*[text()="{order_id}"]')

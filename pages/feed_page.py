@@ -1,3 +1,4 @@
+from locators.main_page_locators import MainPageLocators
 from pages.base_page import BasePage
 from locators.feed_page_locators import FeedPageLocators
 import allure
@@ -37,3 +38,7 @@ class FeedPage(BasePage):
     @allure.step('Получить номер последнего заказа в разделе "В работе"')
     def get_order_number_in_feed_progress_section(self):
         return self.get_text_on_element(FeedPageLocators.NUMBER_OF_ORDER_IN_PROGRESS)
+
+    @allure.step('Дождаться загрузки элемента')
+    def get_wait_element(self):
+        self.wait_visibility_of_element(MainPageLocators.BUTTON_CLOSE_CONFIRMATION)

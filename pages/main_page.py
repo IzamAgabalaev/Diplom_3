@@ -4,6 +4,11 @@ import allure
 
 
 class MainPage(BasePage):
+
+    @allure.step('Дождать загрузки страницы')
+    def main_page_loading_wait(self):
+        self.wait_for_element_hide(MainPageLocators.OVERLAY)
+
     @allure.step('Кликнуть по кнопке перехода в личный кабинет в хэдере')
     def click_on_personal_account_in_header(self):
         self.wait_visibility_of_element(MainPageLocators.BUTTON_PERSONAL_ACCOUNT)
@@ -80,3 +85,11 @@ class MainPage(BasePage):
     def click_on_button_close_confirmation_modal(self):
         self.check_element_is_clickable(MainPageLocators.BUTTON_CLOSE_CONFIRMATION)
         self.click_on_element(MainPageLocators.BUTTON_CLOSE_CONFIRMATION)
+
+    @allure.step('Получить номер в окне о создании заказа')
+    def get_order_id(self):
+        self.wait_for_element_to_change_text(MainPageLocators.NUMBER_OF_ORDER_IN_MODAL_CONFIRMATION)
+        order_id = self.get_text_on_element(MainPageLocators.NUMBER_OF_ORDER_IN_MODAL_CONFIRMATION)
+        while order_id == '9999':
+            order_id = self.get_text_on_element(MainPageLocators.NUMBER_OF_ORDER_IN_MODAL_CONFIRMATION)
+        return f"{order_id}"

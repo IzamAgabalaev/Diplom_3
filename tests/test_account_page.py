@@ -5,7 +5,7 @@ from conftest import *
 import allure
 
 class TestAccountPage:
-    @allure.title('Переход через хедер в профиль через кнопку "Личный кабинет".')
+    @allure.title('Переход из хедера в профиль через кнопку "Личный кабинет".')
     def test_navigate_to_account_page(self, driver, get_token_in_browser):
         main_page = MainPage(driver)
         account_page = AccountPage(driver)

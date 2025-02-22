@@ -17,8 +17,7 @@ class TestFeedPage:
         assert 'бургер' in feed_page.get_text_on_title_of_modal_order()
 
     @allure.title('Проверка отображения существующего заказа из истории пользователя в ленте')
-    def test_displaying_in_feed_new_order_from_history_success(self, driver, create_user_and_order_and_delete,
-                                                               get_token_in_browser):
+    def test_displaying_in_feed_new_order_from_history_success(self, driver, create_user_and_order_and_delete, get_token_in_browser):
         main_page = MainPage(driver)
         account_page = AccountPage(driver)
         order_history_page = OrderHistoryPage(driver)
@@ -29,33 +28,45 @@ class TestFeedPage:
         main_page.click_header_feed_button()
         assert feed_page.check_id_order_in_feed(order_id)
 
-    @allure.title('Проверка увеличения числа на счетчике общего количества выполненных заказов')
+    @allure.title('Проверка увеличения числа счетчика общего количества выполненных заказов')
     def test_changes_counter_for_quantity_of_orders_success(self, driver, get_token_in_browser):
         main_page = MainPage(driver)
         feed_page = FeedPage(driver)
+        main_page.main_page_loading_wait()
         main_page.click_header_feed_button()
         orders_count_1 = feed_page.get_quantity_of_orders()
         main_page.click_on_button_constructor()
+        main_page.main_page_loading_wait()
         main_page.click_on_button_login_in_main()
         main_page.drag_and_drop_ingredient_to_order()
         main_page.click_on_button_make_order()
+        main_page.get_number_of_order_in_modal_confirmation()
+        main_page.main_page_loading_wait()
         main_page.click_on_button_close_confirmation_modal()
         main_page.click_header_feed_button()
+        main_page.main_page_loading_wait()
         orders_count_2 = feed_page.get_quantity_of_orders()
-        assert int(orders_count_1) < int(orders_count_2)
+        assert orders_count_1 < orders_count_2
 
-    @allure.title('Проверка увеличения числа на счетчике ежедневного количества выполненных заказов')
+    @allure.title('Проверка увеличения числа счетчика ежедневного количества выполненных заказов')
     def test_changes_counter_for_daily_quantity_of_orders_success(self, driver, get_token_in_browser):
         main_page = MainPage(driver)
         feed_page = FeedPage(driver)
+        main_page.main_page_loading_wait()
         main_page.click_header_feed_button()
         orders_count_1 = feed_page.get_daily_quantity_of_orders()
         main_page.click_on_button_constructor()
+        main_page.main_page_loading_wait()
         main_page.click_on_button_login_in_main()
+        main_page.main_page_loading_wait()
         main_page.drag_and_drop_ingredient_to_order()
         main_page.click_on_button_make_order()
+        main_page.main_page_loading_wait()
+        main_page.get_order_id()
+        main_page.main_page_loading_wait()
         main_page.click_on_button_close_confirmation_modal()
         main_page.click_header_feed_button()
+        main_page.main_page_loading_wait()
         orders_count_2 = feed_page.get_daily_quantity_of_orders()
         assert orders_count_1 < orders_count_2
 
@@ -63,10 +74,15 @@ class TestFeedPage:
     def test_displaying_new_order_in_progress_feed_success(self, driver, get_token_in_browser):
         main_page = MainPage(driver)
         feed_page = FeedPage(driver)
+        main_page.main_page_loading_wait()
         main_page.click_on_button_login_in_main()
+        main_page.main_page_loading_wait()
         main_page.drag_and_drop_ingredient_to_order()
         main_page.click_on_button_make_order()
-        new_order_id = main_page.get_number_of_order_in_modal_confirmation()
+        main_page.main_page_loading_wait()
+        new_order_id = main_page.get_order_id()
+        main_page.main_page_loading_wait()
         main_page.click_on_button_close_confirmation_modal()
         main_page.click_header_feed_button()
+        main_page.main_page_loading_wait()
         assert feed_page.get_order_number_in_feed_progress_section() == '0'+new_order_id

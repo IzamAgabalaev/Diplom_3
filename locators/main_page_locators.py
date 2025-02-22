@@ -2,6 +2,8 @@ from selenium.webdriver.common.by import By
 
 class MainPageLocators:
 
+    OVERLAY = By.XPATH, ".//div[contains(@class, 'Modal_modal_overlay__x2ZCr')]/parent::div"
+
     BUTTON_LOGIN_IN_MAIN = By.XPATH, './/button[text() = "Войти в аккаунт"]'
 
     BUTTON_PERSONAL_ACCOUNT = (By.XPATH, '//p[text()="Личный Кабинет"]/parent::a')
@@ -46,5 +48,4 @@ class MainPageLocators:
 
     NUMBER_OF_ORDER_IN_MODAL_CONFIRMATION = (By.XPATH, '//section[contains(@class, "Modal_modal_opened")]//h2')
 
-    BUTTON_CLOSE_CONFIRMATION = (By.XPATH, '//section[contains(@class, "Modal_modal_opened")'
-                                           ']//button[contains(@class, "close")]')
+    BUTTON_CLOSE_CONFIRMATION = (By.CSS_SELECTOR, 'button.Modal_modal__close_modified__3V5XS.Modal_modal__close__TnseK')
