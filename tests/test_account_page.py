@@ -1,7 +1,6 @@
 from pages.account_page import AccountPage
 from pages.main_page import MainPage
 from pages.order_history_page import OrderHistoryPage
-from conftest import *
 import allure
 
 class TestAccountPage:

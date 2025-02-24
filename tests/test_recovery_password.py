@@ -1,6 +1,5 @@
 from pages.password_recovery_page import PasswdRecoveryPage
 from pages.main_page import MainPage
-from conftest import *
 import allure
 
 

@@ -2,7 +2,6 @@ from pages.feed_page import FeedPage
 from pages.main_page import MainPage
 from pages.order_history_page import OrderHistoryPage
 from pages.account_page import AccountPage
-from conftest import *
 import allure
 
 
